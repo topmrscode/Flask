@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}Comment modify{% endblock %}
+{% block head %}
+    {{ super() }}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login_register.css') }}">
+{% endblock %}
+{% block content %}
+    
+    <div id="container">
+        <form action="/articles/{{comment.article_id}}/comments/{{comment.id}}/modify" method="POST">
+            <h3>Modify comment</h3>
+                    message : <input  id="message" value= "{{comment.message}}" name="message" type="text" class="validate">
+            <input type="submit" value="Modify" />
+        </form>
+    
+     </div>
+
+{% endblock %}

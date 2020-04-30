@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block title %}Articles list{% endblock %}
+{% block head %}
+    {{ super() }}
+{% endblock %}
+{% block content %}
+<div class="row">
+    <div class="tableau">
+<table class="responsive-table">
+    <thead>
+      <tr>
+          <th>#</th>
+          <th>Title</th>
+          <th>Body</th>
+          <th>Actions</th>
+      </tr>
+    </thead>
+
+    <tbody>
+        {% for art in articles_list %}
+      <tr>
+        <td>{{art.id}}</td>
+        <td>{{art.title}}</td>
+        <td>{{art.body}}</td>
+        {% if art.user_id == user.id %}
+        <td> <a href="/articles/{{art.id}}/delete"><button class="bottom">DELETE</button></a>
+            <a href="/articles/{{art.id}}/modify"><button class="bottom">MODIFY</button></a>
+       {% else %}
+          <td> <a href="/articles/{{art.id}}/delete"><button  disabled>DELETE</button></a>
+            <a href="/articles/{{art.id}}/modify"><button  disabled>MODIFY</button></a>
+        {% endif %}
+        <a href="/articles/{{art.id}}"><button class="bottom">DETAILS</button></a>
+       
+      </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+
+<!-- afficher le formulaire create -->
+  <div id="container">
+    <form action="/articles/" method="POST">
+      <h4>Create an Article</h4>
+      title : <input id="title"  placeholder="Enter a title" name="title" type="text" class="validate">
+      body : <input id="body" placeholder="Enter a content" name="body" type="text" class="validate">
+      <input type="submit" value="Create Article" />
+    </form>
+</div>
+
+   
+{% endblock %}

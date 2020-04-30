@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block title %}Register formm{% endblock %}
+{% block head %}
+    {{ super() }}
+{% endblock %}
+{% block content %}
+<div class="row">
+  <div class ="tableau">
+<table >
+    <thead>
+      <tr>
+          <th>#</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Actions</th>
+      </tr>
+    </thead>
+
+    <tbody>
+        {% for usr in users_list %}
+      <tr>
+        <td>{{usr.id}}</td>
+        <td>{{usr.username}}</td>
+        <td>{{usr.email}}</td>
+        {% if usr.id == user.id %}
+        <td> <a href="/users/{{usr.id}}/delete"><button class="bottom">DELETE</button></a>
+          <a href="/users/{{usr.id}}/modify"><button class="bottom" type="button">MODIFY</button></a>
+       {% else %}
+          <td> <a href="/users/{{usr.id}}/delete"><button disabled>DELETE</button></a>
+            <a href="/users/{{usr.id}}/modify"><button  disabled type="button">MODIFY</button></a>
+        {% endif %}
+        <a href="/users/{{usr.id}}"><button class="bottom" type="button">DETAILS</button></a>
+       
+      </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+</div>
+
+   
+{% endblock %}

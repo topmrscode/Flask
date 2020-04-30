@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}Login{% endblock %}
+{% block head %}
+    {{ super() }}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login_register.css') }}">
+{% endblock %}
+{% block content %}
+    
+    <div id="container">
+        <form action="/users/{{user_details.id}}/modify" method="POST" class="col s12">
+            <h3>Edit Profile</h3>
+                username : <input  id="username" value= "{{user_details.username}}" name="username" type="text" class="validate">
+                Email : <input  id="email" value= "{{user_details.email}}" name="email" type="text" class="validate">
+                password: <input id="password" type="password"  name="password" type="text" class="validate">
+            <input type="submit" value="Modify" />
+        </form>
+    
+     </div>
+
+{% endblock %}
